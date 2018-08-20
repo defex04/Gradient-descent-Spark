@@ -1,4 +1,4 @@
-import functions.GradientDescent;
+import functions.MiniBatchGradientDescent;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -7,13 +7,14 @@ import org.apache.spark.storage.StorageLevel;
 import scala.Tuple2;
 
 
-public class Main {
+
+class Main {
     public static void main(String[] args) {
 
         SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> lines = sc.textFile("C:\\Users\\andre\\Desktop\\Gradient-descent-Spark\\src\\main\\java\\sample3.txt");
+        JavaRDD<String> lines = sc.textFile("src/main/resources/sample.txt");
 
         JavaPairRDD<Double[], Double> numbersRDD = lines.mapToPair(
                 s -> {
@@ -29,27 +30,22 @@ public class Main {
         );
 
         numbersRDD.persist(StorageLevel.MEMORY_ONLY());
-        //numbersRDD.collect().forEach(tuple -> { for(Double d : tuple._1()) System.out.print(d + " "); System.out.println(tuple._2()); });
-
-
-        //System.out.println(numbersRDD.getNumPartitions());
-        //numbersRDD.foreach(i -> System.out.println(i));
 
         long startTime = System.currentTimeMillis();
 
-        Double[] tt = GradientDescent.calculateGradient(sc, numbersRDD, 2, 731,0.1, 500, 0.001);
+        Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, 731,
+                2,0.1, 1000, 0);
 
         long timeSpent = System.currentTimeMillis() - startTime;
 
+
+        for (Double theta:thetas) {
+            System.out.println(theta);
+        }
+
         System.out.println("Метод выполнялся " + timeSpent + " миллисекунд");
 
-        //Double[] res = GradientDescent.runWithSpark(sc, numbersRDD, 25, 2, 0.01, 10, 0.01);
-
-        for (Double r:tt) {
-            System.out.println(r);
-        }
-        System.out.println("Hello World");
-
-
     }
+
+
 }
