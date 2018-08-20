@@ -38,4 +38,4 @@ for t, r in zip(temps, rentals):
 ```
 Визуадизация данных:
 
-![alt text](./data.jpg)
+![alt text](images/data.jpg)
