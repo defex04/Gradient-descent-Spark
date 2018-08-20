@@ -55,6 +55,8 @@ for t, r in zip(temps, rentals):
 
 ![alt text](./formula_1.png)
 
+Задача найти такие параметры тета, при которых функция ошибки (J) будет минимальна.
+
 Обновление параметров происходит по следующим формулам:
 
 ![alt text](./formula_2.png)
@@ -63,9 +65,6 @@ for t, r in zip(temps, rentals):
 
 ![alt text](./formula_3.png)
 
-Задача минимизировать cost function (функция стоимости или ошибки):
-
-![alt text](./formula_4.png)
 
 
 
