@@ -1,11 +1,15 @@
 # Gradient-descent-Spark
 
-Распределенная версия градиентного спуска в Apache Spark.
+Распределенная версия градиентного спуска в Apache Spark для линейной регрессии.
 
 ## Загрузка и визуализация данных
 
 Для удобства исследования и оценки разработанного алгоритма, в качестве исходных данных были выбраны данные с одной переменной.
-На Python был написан скрипт для генерации и визуализации входной выборки:
+
+Источник данных: [Bike Sharing Dataset Data Set](https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset)
+
+На Python был написан скрипт для обработки и визуализации входной выборки:
+
 
 ```python
 import pandas as pd
@@ -20,7 +24,7 @@ plt.xlabel('Normalized Temperature in C')
 plt.ylabel('Bike Rentals in 1000s')
 plt.show()
 
-f = open('sample3.txt', 'w')
+f = open('sample.txt', 'w')
 
 for t, r in zip(temps, rentals):
     f.write('%f %f\n' % (float(t), float(r)))
@@ -29,8 +33,8 @@ for t, r in zip(temps, rentals):
 - atemp: Normalized feeling temperature in Celsius. The values are divided to 50 (max)
 - cnt: count of total rental bikes including both casual and registered
 
-Вид файла sample3.txt:
-```x        y
+Таким образом, формат данных файла sample.txt:
+```       
 0.363625 0.985000
 0.353739 0.801000
 0.189405 1.349000
@@ -44,3 +48,16 @@ for t, r in zip(temps, rentals):
 Визуадизация данных:
 
 ![alt text](./data.jpg)
+
+## Теоретическая база
+
+![alt text](./formula.png)
+
+
+
+## Описание алгоритма
+
+## Оценка результатов
+
+## Комментарии
+
