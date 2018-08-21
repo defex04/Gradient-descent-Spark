@@ -31,11 +31,8 @@ public class MiniBatchGradientDescent {
 
         int iteration = 0;
 
-        while (true) {
+        while (iteration != maxIteration) {
             iteration++;
-            if (iteration > maxIteration)
-                break;
-
 
             Double[] newThetas = updateParameters(jsc, data, thetasVector, dataSize, thetasAmount, alpha);
 
@@ -49,7 +46,6 @@ public class MiniBatchGradientDescent {
             }
             else
                 error = newError;
-
         }
 
         return thetas;
@@ -138,7 +134,6 @@ public class MiniBatchGradientDescent {
 
         return newMeanError;
     }
-
 
 
 }

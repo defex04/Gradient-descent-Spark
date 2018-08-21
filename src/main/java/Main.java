@@ -1,40 +1,27 @@
+import functions.LoadData;
 import functions.MiniBatchGradientDescent;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.storage.StorageLevel;
-import scala.Tuple2;
 
 
 
 class Main {
     public static void main(String[] args) {
 
-        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[*]");
+        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[64]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> lines = sc.textFile("src/main/resources/sample.txt");
-
-        JavaPairRDD<Double[], Double> numbersRDD = lines.mapToPair(
-                s -> {
-                    String[] splitString = s.split(" ");
-                    Double y = Double.parseDouble(splitString[splitString.length - 1]);
-                    Double[] x = new Double[1];
-
-                    for (int i =0; i < 1; i++) {
-                        x[i] = Double.parseDouble(splitString[i]);
-                    }
-                    return new Tuple2<>(x, y);
-                }
-        );
+        JavaPairRDD<Double[], Double> numbersRDD = LoadData.loadData(sc,
+                "src/main/resources/sample_big.txt");
 
         numbersRDD.persist(StorageLevel.MEMORY_ONLY());
 
         long startTime = System.currentTimeMillis();
 
-        Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, 731,
-                2,0.1, 1000, 0);
+        Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, 1720482,
+                2,0.1, 500, 0);
 
         long timeSpent = System.currentTimeMillis() - startTime;
 
