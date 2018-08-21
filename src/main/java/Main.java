@@ -24,11 +24,11 @@ class Main {
 
         long startTime = System.currentTimeMillis();
         Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, PropertiesFromFile.DATA_SIZE,
-                PropertiesFromFile.THETAS_AMOUNT,PropertiesFromFile.ALPHA, PropertiesFromFile.MAX_ITERATION,
+                PropertiesFromFile.THETAS_AMOUNT, PropertiesFromFile.ALPHA, PropertiesFromFile.MAX_ITERATION,
                 PropertiesFromFile.THRESHOLD);
         long timeSpent = System.currentTimeMillis() - startTime;
 
-        for (Double theta:thetas) {
+        for (Double theta : thetas) {
             System.out.println(theta);
         }
         System.out.println("Метод выполнялся " + timeSpent + " миллисекунд");

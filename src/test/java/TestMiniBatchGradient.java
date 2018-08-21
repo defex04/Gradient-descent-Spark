@@ -29,10 +29,10 @@ public class TestMiniBatchGradient {
     @Test
     public void testFindParameters() {
 
-        Double THETA_0_MIN  = 0.5;
+        Double THETA_0_MIN = 0.5;
         Double THETA_0_MAX = 2.5;
 
-        Double THETA_1_MIN  = 5.0;
+        Double THETA_1_MIN = 5.0;
         Double THETA_1_MAX = 9.0;
 
         Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD,

@@ -28,11 +28,10 @@ public class MiniBatchGradientDescent {
                     dataSize, thetasAmount, alpha));
             Double newError = costFunction(jsc, data, thetasVector, dataSize, thetasAmount);
 
-            if (Math.abs(error-newError) < threshold) {
+            if (Math.abs(error - newError) < threshold) {
                 System.out.println("Number of iterations: " + iteration);
                 break;
-            }
-            else
+            } else
                 error = newError;
         }
         return thetas;
@@ -68,7 +67,7 @@ public class MiniBatchGradientDescent {
                 tempJAccumulator.add(calculateTempPart(currentJ, h, x, y));
 
             });
-            thetas[j] -=(alpha / dataSize) * tempJAccumulator.value();
+            thetas[j] -= (alpha / dataSize) * tempJAccumulator.value();
         }
         return thetas;
     }
@@ -101,7 +100,7 @@ public class MiniBatchGradientDescent {
             if (i == 0)
                 h += thetaTemp[i];
             else
-                h += thetaTemp[i] * x[i-1];
+                h += thetaTemp[i] * x[i - 1];
         }
         return h;
     }
