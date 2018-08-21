@@ -8,9 +8,6 @@ import org.apache.spark.util.DoubleAccumulator;
 
 public class MiniBatchGradientDescent {
 
-
-    private static final Double INIT_THETAS_VALUE = 0.0;
-
     public static Double[] findParameters(JavaSparkContext jsc,
                                           JavaPairRDD<Double[], Double> data,
                                           long dataSize,
@@ -44,7 +41,7 @@ public class MiniBatchGradientDescent {
     private static Double[] initThetas(int thetasAmount) {
         Double[] thetas = new Double[thetasAmount];
         for (int j = 0; j < thetasAmount; j++) {
-            thetas[j] = INIT_THETAS_VALUE;
+            thetas[j] = PropertiesFromFile.INIT_THETAS_VALUE;
         }
         return thetas;
     }
