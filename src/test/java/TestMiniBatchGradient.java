@@ -17,7 +17,7 @@ public class TestMiniBatchGradient {
 
     @Before
     public void setUp() {
-        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[64]");
+        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[*]");
         sc = new JavaSparkContext(conf);
         numbersRDD = LoadData.loadData(sc, "src/main/resources/sample.txt");
     }

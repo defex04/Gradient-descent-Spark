@@ -10,17 +10,17 @@ import org.apache.spark.storage.StorageLevel;
 class Main {
     public static void main(String[] args) {
 
-        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[64]");
+        SparkConf conf = new SparkConf().setAppName("Test").setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaPairRDD<Double[], Double> numbersRDD = LoadData.loadData(sc,
-                "src/main/resources/sample_big.txt");
+                "src/main/resources/sample.txt");
 
         numbersRDD.persist(StorageLevel.MEMORY_ONLY());
 
         long startTime = System.currentTimeMillis();
 
-        Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, 1720482,
+        Double[] thetas = MiniBatchGradientDescent.findParameters(sc, numbersRDD, 731,
                 2,0.1, 500, 0);
 
         long timeSpent = System.currentTimeMillis() - startTime;
