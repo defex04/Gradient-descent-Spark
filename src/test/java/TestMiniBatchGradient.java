@@ -1,5 +1,3 @@
-package test.java;
-
 import functions.LoadData;
 import functions.MiniBatchGradientDescent;
 import org.apache.spark.SparkConf;
