@@ -151,6 +151,11 @@ threshold - пороговое значение ошибки (если > 0 то 
 
 <a name="links"><h2>Список литературы</h2></a>
 
+1. https://crsmithdev.com/blog/ml-linear-regression/
+2. https://cse.buffalo.edu/faculty/miller/Courses/CSE633/Li-Hui-Fall-2012-CSE633.pdf
+3. http://da.qcri.org/jquiane/jorgequianeFiles/papers/sigmod17a.pdf
+4. https://www.javaworld.com/article/3224505/application-development/machine-learning-for-java-developers.html
+5. https://github.com/NSuprotivniy/Batch_Gradient_Descend_with_Spark
 
 
 
