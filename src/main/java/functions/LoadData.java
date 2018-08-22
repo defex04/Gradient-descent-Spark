@@ -14,7 +14,7 @@ public class LoadData {
         return lines.mapToPair(s -> {
                     String[] splitString = s.split(" ");
                     Double y = Double.parseDouble(splitString[splitString.length - 1]);
-                    Double[] x = new Double[1];
+                    Double[] x = new Double[PropertiesFromFile.THETAS_AMOUNT-1];
 
                     for (int i = 0; i < PropertiesFromFile.THETAS_AMOUNT - 1; i++) {
                         x[i] = Double.parseDouble(splitString[i]);
